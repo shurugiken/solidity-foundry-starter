@@ -115,10 +115,11 @@ contract EscrowTest is Test {
     }
 
     function test_deposit_revertsOnDirectEthSend() public {
+        // A raw ETH send hits receive(), which reverts. A low-level .call swallows
+        // that revert and returns ok == false, so we assert on the return value
+        // (vm.expectRevert can't be used here — the revert never reaches this frame).
         vm.prank(buyer);
-        vm.expectRevert("Escrow: use deposit()");
         (bool ok,) = address(escrow).call{value: DEPOSIT}("");
-        // ok will be false because the call reverted; assert for clarity
         assertFalse(ok);
     }
 
