@@ -1,0 +1,25 @@
+# Foundry build artifacts
+out/
+cache/
+
+# Forge dependencies (installed locally via `forge install`, not committed)
+lib/
+.soldeer/
+
+# Environment files
+.env
+.env.local
+
+# Editor directories
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Coverage reports
+lcov.info
+coverage/
