@@ -7,6 +7,9 @@ jobs:
       - uses: actions/checkout@v4
       - uses: foundry-rs/foundry-toolchain@v1
       - name: Install forge-std
-        run: forge install foundry-rs/forge-std --no-commit
+        run: |
+          git config --global user.email "ci@example.com"
+          git config --global user.name "CI"
+          forge install foundry-rs/forge-std
       - name: Run tests
         run: forge test -vvv
