@@ -26,8 +26,10 @@ contract EscrowTest is Test {
     uint256 internal constant DEPOSIT = 1 ether;
 
     function setUp() public {
-        // Give buyer enough ETH for tests
+        // Fund buyer, and stranger (so the unauthorized-deposit test reaches the
+        // onlyBuyer check instead of reverting on insufficient balance for the send).
         vm.deal(buyer, 10 ether);
+        vm.deal(stranger, 10 ether);
 
         // Deploy escrow as buyer
         vm.prank(buyer);
